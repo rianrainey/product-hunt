@@ -338,6 +338,8 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'cssmin',
     'concat',
+    'coffee',
+    'sass',
     'uglify',
     'copy',
     'usemin',

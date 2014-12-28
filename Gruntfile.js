@@ -43,11 +43,15 @@ module.exports = function (grunt) {
         files: ['Gruntfile.js']
       },
       styles: {
-        files: ['<%= config.app %>/styles/{,*/}*.css'],
-        tasks: [],
+        files: ['<%= config.app %>/styles/{,*/}*.scss'],
+        tasks: ['sass'],
         options: {
           livereload: true
         }
+      },
+      coffee: {
+        files: ['<%= config.app %>/coffee/{,*/}*.coffee'],
+        tasks: ['coffee']
       },
       livereload: {
         options: {
@@ -59,6 +63,17 @@ module.exports = function (grunt) {
           '<%= config.app %>/manifest.json',
           '<%= config.app %>/_locales/{,*/}*.json'
         ]
+      }
+    },
+
+    sass: {                              // Task
+      dist: {                            // Target
+        options: {                       // Target options
+          style: 'expanded'
+        },
+        files: {                         // Dictionary of files
+          '<%= config.app %>/main.css': '<%= config.app %>/styles/main.scss',       // 'destination': 'source'
+        }
       }
     },
 
@@ -201,30 +216,38 @@ module.exports = function (grunt) {
       }
     },
 
+    coffee: {
+      compile: {
+        files: {
+          '<%= config.app %>/app.js': ['<%= config.app %>/coffee/*.coffee']
+        }
+      },
+    },
+
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/styles/main.css': [
-    //         '<%= config.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/scripts/scripts.js': [
-    //         '<%= config.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+     cssmin: {
+       dist: {
+         files: {
+           '<%= config.dist %>/styles/main.css': [
+             '<%= config.app %>/styles/{,*/}*.css'
+           ]
+         }
+       }
+     },
+     uglify: {
+       dist: {
+         files: {
+           '<%= config.dist %>/scripts/scripts.js': [
+             '<%= config.dist %>/scripts/scripts.js'
+           ]
+         }
+       }
+     },
+     concat: {
+       dist: {}
+     },
 
     // Copies remaining files to places other tasks can use
     copy: {
@@ -291,7 +314,7 @@ module.exports = function (grunt) {
           dest: ''
         }]
       }
-    }
+    },
   });
 
   grunt.registerTask('debug', function () {

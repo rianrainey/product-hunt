@@ -20,8 +20,8 @@ change.
 
 ## To Dos
 
-*[ ] Open product hunt in new window
-*[ ] Only submit root url
-*[ ] Oauth user
-*[ ] Search existing hunts to see if it already exists
+-[x] Open product hunt in new window
+-[ ] Only submit root url
+-[ ] Oauth user
+-[ ] Search existing hunts to see if it already exists
 

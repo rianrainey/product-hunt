@@ -2,9 +2,38 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link href="main.css" rel="stylesheet">
+    <link href="screen.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Here is the new page.</h1>
+    <section class='container wrap'>
+      <h4>Add To Product Hunt Collection</h1>
+      <form action="" method="post" accept-charset="utf-8">
+        <section class="header">
+          <h5>Pick A Collection</h2>
+        </section>
+        <section class="collection">
+          <select id="" name="">
+            <option value="1">Collection 1</option>
+            <option value="2">Collection 2</option>
+            <option value="3">Collection 3</option>
+            <option value="4">Collection 4</option>
+            <option value="5">Collection 5</option>
+          </select>
+        </section>
+        <section class="description">
+          <h5>Provide a description of the new product</h2>
+          <textarea name="Product Description" id="product-description" rows="8" cols="40"></textarea>
+        </section>
+
+        <button type="cancel">Cancel</button>
+        <input type="submit" name="Submit" id="" value="Add To Collection" />
+      </form>
+    </section>
+
+    <!-- build:js scripts/vendor.js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbuild -->
+
+    <script src='app.js'></script>
   </body>
 </html>

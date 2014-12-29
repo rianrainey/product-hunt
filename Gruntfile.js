@@ -34,24 +34,24 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= config.app %>/scripts/{,*/}*.js'],
-        tasks: ['jshint'],
-        options: {
-          livereload: true
-        }
+tasks: ['jshint'],
+options: {
+  livereload: true
+}
       },
       gruntfile: {
         files: ['Gruntfile.js']
       },
       styles: {
         files: ['<%= config.app %>/styles/{,*/}*.scss'],
-        tasks: ['sass'],
-        options: {
-          livereload: true
-        }
+tasks: ['sass'],
+options: {
+  livereload: true
+}
       },
       coffee: {
         files: ['<%= config.app %>/coffee/{,*/}*.coffee'],
-        tasks: ['coffee']
+tasks: ['coffee']
       },
       livereload: {
         options: {
@@ -68,11 +68,15 @@ module.exports = function (grunt) {
 
     sass: {                              // Task
       dist: {                            // Target
-        options: {                       // Target options
-          style: 'expanded'
+        options: {
+          debugInfo: false,
+          lineNumbers: false,
+          loadPath: '<%= config.app %>/bower_components'
         },
         files: {                         // Dictionary of files
-          '<%= config.app %>/main.css': '<%= config.app %>/styles/main.scss',       // 'destination': 'source'
+          '<%= config.app %>/screen.css': '<%= config.app %>/styles/screen.scss',       // 'destination': 'source'
+
+          //
         }
       }
     },
@@ -128,8 +132,8 @@ module.exports = function (grunt) {
       all: [
         'Gruntfile.js',
         '<%= config.app %>/scripts/{,*/}*.js',
-        '!<%= config.app %>/scripts/vendor/*',
-        'test/spec/{,*/}*.js'
+            '!<%= config.app %>/scripts/vendor/*',
+            'test/spec/{,*/}*.js'
       ]
     },
     mocha: {
@@ -169,7 +173,7 @@ module.exports = function (grunt) {
         assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
       },
       html: ['<%= config.dist %>/{,*/}*.html'],
-      css: ['<%= config.dist %>/styles/{,*/}*.css']
+          css: ['<%= config.dist %>/styles/{,*/}*.css']
     },
 
     // The following *-min tasks produce minifies files in the dist folder
@@ -221,33 +225,37 @@ module.exports = function (grunt) {
         files: {
           '<%= config.app %>/app.js': ['<%= config.app %>/coffee/*.coffee']
         }
-      },
+      }
     },
 
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-     cssmin: {
-       dist: {
-         files: {
-           '<%= config.dist %>/styles/main.css': [
-             '<%= config.app %>/styles/{,*/}*.css'
-           ]
-         }
-       }
-     },
-     uglify: {
-       dist: {
-         files: {
-           '<%= config.dist %>/scripts/scripts.js': [
-             '<%= config.dist %>/scripts/scripts.js'
-           ]
-         }
-       }
-     },
-     concat: {
-       dist: {}
-     },
+    cssmin: {
+      dist: {
+        files: {
+          '<%= config.dist %>/styles/main.css': [
+            '<%= config.app %>/styles/{,*/}*.css'
+          ]
+        }
+      }
+    },
+    uglify: {
+      dist: {
+        files: {
+          '<%= config.dist %>/scripts/scripts.js': [
+            '<%= config.dist %>/scripts/scripts.js'
+          ]
+        }
+      }
+    },
+    concat: {
+      dist: {
+        files: [{
+          
+        }]
+      }
+    },
 
     // Copies remaining files to places other tasks can use
     copy: {
@@ -260,10 +268,10 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             'images/{,*/}*.{webp,gif}',
-            '{,*/}*.html',
-            'styles/{,*/}*.css',
-            'styles/fonts/{,*/}*.*',
-            '_locales/{,*/}*.json',
+          '{,*/}*.html',
+          'styles/{,*/}*.css',
+          'styles/fonts/{,*/}*.*',
+          '_locales/{,*/}*.json',
           ]
         }]
       }
@@ -319,36 +327,36 @@ module.exports = function (grunt) {
 
   grunt.registerTask('debug', function () {
     grunt.task.run([
-      'jshint',
-      'concurrent:chrome',
-      'connect:chrome',
-      'watch'
+                   'jshint',
+                   'concurrent:chrome',
+                   'connect:chrome',
+                   'watch'
     ]);
   });
 
   grunt.registerTask('test', [
-    'connect:test',
-    'mocha'
+                     'connect:test',
+                     'mocha'
   ]);
 
   grunt.registerTask('build', [
-    'clean:dist',
-    'chromeManifest:dist',
-    'useminPrepare',
-    'concurrent:dist',
-    'cssmin',
-    'concat',
-    'coffee',
-    'sass',
-    'uglify',
-    'copy',
-    'usemin',
-    'compress'
+                     'clean:dist',
+                     'chromeManifest:dist',
+                     'useminPrepare',
+                     'concurrent:dist',
+                     'cssmin',
+                     'concat',
+                     'coffee',
+                     'sass',
+                     'uglify',
+                     'copy',
+                     'usemin',
+                     'compress'
   ]);
 
   grunt.registerTask('default', [
-    'jshint',
-    'test',
-    'build'
+                     'jshint',
+                     'test',
+                     'build'
   ]);
 };

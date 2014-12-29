@@ -1,0 +1,5 @@
+$ ->
+  @getToken()
+
+getToken: ->
+  alert 'ready!'
